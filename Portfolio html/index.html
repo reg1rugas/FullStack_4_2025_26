@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        body {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2.4rem;
+            border: 1px solid rgba(0,0,0,0.08);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.10);
+            line-height: 1.45;
+            font-size: 16px;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: gray;
+        }
+
+        @keyframes chaoticMove {
+            0% { top: 0; left: 0; }
+            25% { top: 80vh; left: 10vw; }
+            50% { top: 50vh; left: 80vw; }
+            75% { top: 10vh; left: 50vw; }
+            100% { top: 0; left: 0; }
+        }
+
+        #wong-form {
+            position: absolute;
+            animation: chaoticMove 5s infinite alternate ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <header style="text-align: center;">
+        <h1>I, me, myself</h1>
+        <p>Self-proclaimed FullStack Developer</p>
+        <img src="img.webp" height="120" width="140" >
+        <hr>
+    </header>
+
+    <nav style="text-align: center;">
+        <a href="https://github.com/reg1rugas">Github</a>
+        <a href="https://leetcode.com/regirugas">Leetcode</a>
+        <a href="https://linkedin.com/in/reg1rugas">Linkedin</a>
+    </nav>
+    <hr>
+
+    <section>
+        <h2>Projects</h2>
+        <article>
+            <ul>
+            <li><h3>Hostel Management App</h3>
+            <p> [<a href="github.com">Link</a>] A full stack decentralized hostel management webapp written with springboot </p>
+                </li>
+                <li><h3>URL Shortner</h3>
+            <p> [<a href="github.com">Link</a>] An app to shorten links </p>
+                </li>
+            </ul>
+        </article>
+        <hr>
+    </section>
+
+    <section>
+        <h2>Skills</h2>
+        <ul>
+            <li><b>Languages : </b>Python, C++, Java, Rust</li>
+            <li><b>Databases : </b>MySQL, PostgreSQL, MongoDB</li>
+            <li><b>Tools & Platforms : </b>AWS, Git, Github, yada yada</li>
+        </ul>
+        <hr>
+    </section>
+
+    <section style="text-align: center;">
+        <h2>Education</h2>
+
+        <table align="center" border="4">
+            <thead>
+                <tr>
+                    <td>Degree</td>
+                    <td>Passing year</td>
+                    <td>Institue</td>
+                    <td>CGPA/Percentage</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>BE CSE</td>
+                    <td>2028</td>
+                    <td>Chandigarh University</td>
+                    <td>9</td>
+                </tr>
+                <tr>
+                    <td>12th PCM</td>
+                    <td>2024</td>
+                    <td>Schoooooooooool</td>
+                    <td>9</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <br>
+        <hr>
+    </section>
+
+    <section id="wong-form">
+        <h2>Contact Me </h2>
+        <form>
+            <label for="name">Enter your name : </label>
+            <input type="text" id="name" name="username" required><br><br>
+
+            <label for="mail">Enter your mail : </label>
+            <input type="email" id="mail" name="mail" required><br><br>
+
+            <label for="reason">Reason for contacting : </label>
+            <select id="reason">
+                <option value="" selected disabled hidden>--select--</option>
+                <option value="job">Job Opportunity</option>
+                <option value="freelance">Freelance Opportunity</option>
+                <option value="training">Training</option>
+            </select> <br><br>
+
+            <label for="feedback">Feedback : </label>
+            <textarea id="feedback"></textarea>
+
+            <button>Submit</button>
+        </form>
+        <br>
+        <hr>
+    </section>
+    
+
+    <footer>
+        &copy; All rights reserved
+    </footer>
+</body>
+</html>
