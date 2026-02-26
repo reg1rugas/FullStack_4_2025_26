@@ -58,7 +58,7 @@
             border: 1px solid #ccc;
             padding: 15px;
             margin: 10px 20px;
-            display: flex; /* Keeps text left, button right */
+            display: flex; 
             justify-content: space-between;
             align-items: center;
         }
@@ -78,9 +78,9 @@
 
 <section class="hero">
     <h2>Find Your Dream Job</h2>
-    <input type="text" placeholder="Job title">
-    <input type="text" placeholder="Location">
-    <button>Search</button>
+    <input type="text" id="titleSearch" placeholder="Job title">
+    <input type="text" id="locationSearch" placeholder="Location">
+    <button onclick="filterJobs()">Search</button>
 </section>
 
 <section class="categories">
@@ -91,7 +91,7 @@
     <div class="category">Design</div>
 </section>
 
-<section class="jobs">
+<section class="jobs" id="jobList">
     <h3 style="padding-left: 20px;">Latest Jobs</h3>
 
     <div class="job-card">
@@ -122,6 +122,32 @@
 <footer>
     <p>© 2023 Job Portal</p>
 </footer>
+
+<script>
+    function filterJobs() {
+
+        const titleQuery = document.getElementById('titleSearch').value.toLowerCase();
+        const locationQuery = document.getElementById('locationSearch').value.toLowerCase();
+
+        const jobs = document.getElementsByClassName('job-card');
+
+
+        for (let i = 0; i < jobs.length; i++) {
+            const jobTitle = jobs[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+            const jobDetails = jobs[i].getElementsByTagName('p')[0].innerText.toLowerCase();
+
+ 
+            const titleMatches = jobTitle.includes(titleQuery);
+            const locationMatches = jobDetails.includes(locationQuery);
+
+            if (titleMatches && locationMatches) {
+                jobs[i].style.display = "flex"; 
+            } else {
+                jobs[i].style.display = "none"; 
+            }
+        }
+    }
+</script>
 
 </body>
 </html>
