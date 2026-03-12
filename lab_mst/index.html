@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Task Manager</title>
+    
+</head>
+<body>
+
+<div class="container" style="text-align: center;">
+    <h2>Task Manager</h2>
+
+    <div class="input-group">
+        <input type="text" id="taskInput" placeholder="Enter student task...">
+        <select id="prioritySelect">
+            <option value="Low">Low</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="High">High</option>
+        </select>
+        <button id="addBtn">Add Task</button>
+    </div>
+
+    <div class="filters" id="filterSection">
+        <button class="active" onclick="filterTasks('All', this)">Show All</button>
+        <button onclick="filterTasks('Pending', this)">Pending</button>
+        <button onclick="filterTasks('Completed', this)">Completed</button>
+    </div>
+
+    <ul id="taskList"></ul>
+</div>
+
+<script>
+    let tasks = [];
+    let currentFilter = 'All';
+
+    const taskInput = document.getElementById('taskInput');
+    const prioritySelect = document.getElementById('prioritySelect');
+    const addBtn = document.getElementById('addBtn');
+    const taskList = document.getElementById('taskList');
+
+
+    addBtn.addEventListener('click', () => {
+        const name = taskInput.value.trim();
+        const priority = prioritySelect.value;
+
+        if (!name) return alert("Task name cannot be empty!");
+
+        const newTask = {
+            id: Date.now(),
+            name: name,
+            priority: priority,
+            completed: false
+        };
+
+        tasks.push(newTask);
+        display();
+        taskInput.value = "";
+    });
+
+
+    function deleteTask(id) {
+        tasks = tasks.filter(task => task.id !== id);
+        display();
+    }
+
+    function toggleComplete(id) {
+        tasks = tasks.map(task => {
+            if (task.id === id) return { ...task, completed: !task.completed };
+            return task;
+        });
+        display();
+    }
+
+    function filterTasks(status, btnElement) {
+        currentFilter = status;
+        
+
+        document.querySelectorAll('.filters button').forEach(btn => btn.classList.remove('active'));
+        btnElement.classList.add('active');
+        
+        display();
+    }
+
+    function display() {
+
+        taskList.innerHTML = "";
+
+        // Filter the tasks based on selection
+        let filtered = tasks.filter(t => {
+            if (currentFilter === 'Completed') return t.completed;
+            if (currentFilter === 'Pending') return !t.completed;
+            return true;
+        });
+
+        filtered.forEach(task => {
+            const li = document.createElement('li');
+            li.className = `task-item ${task.priority.toLowerCase()}`;
+            
+            li.innerHTML = `
+                <div class="task-text ${task.completed ? 'completed' : ''}">
+                    <strong>${task.name}</strong> <br>
+                    <small>Priority: ${task.priority}</small>
+                </div>
+                <div class="actions">
+                    <button class="btn-done" onclick="toggleComplete(${task.id})">
+                        ${task.completed ? 'Undo' : 'Done'}
+                    </button>
+                    <button class="btn-delete" onclick="deleteTask(${task.id})">Delete</button>
+                </div>
+            `;
+            taskList.appendChild(li);
+        });
+    }
+
+    display();
+</script>
+
+</body>
+</html>
